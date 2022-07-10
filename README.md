@@ -1,6 +1,11 @@
 # Ethereum_Lotto_Machine
 Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
 
+## Description
+- Blockchain Farm 학회 Term Project - Ethereum Lotto Machine
+- 공통된 아이디어로 각자 개발 진행
+- 매주 토요일 프로젝트 진행 상황 공유 & 피드백 
+
 ## Deployed Site
 - Ropsten Testnet과 연동한 DApp입니다.
 - MyPage에서 테스트 코인을 받고 애플리케이션을 이용해주세요.
