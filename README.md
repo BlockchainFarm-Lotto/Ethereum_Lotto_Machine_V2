@@ -1,5 +1,10 @@
 # Ethereum_Lotto_Machine
-Blockchain Farm Term Project - Ethereum Lotto Machine V2
+Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
+
+## Deployed Site
+- Ropsten Testnet과 연동한 DApp입니다.
+- MyPage에서 테스트 코인을 받고 애플리케이션을 이용해주세요.
+- [https://lottocoin.netlify.app](https://lottocoin.netlify.app)
 
 ## Tools
 - Ropsten testnet
