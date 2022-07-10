@@ -14,7 +14,10 @@ Blockchain Farm Term Project - Ethereum Lotto Machine V2
 
 ## Command
 ```
+npm install @truffle/hdwallet-provider
+
 cd client
+npm install
 npm start
 ```
 
@@ -25,6 +28,12 @@ npm start
 - Open link in same tab, pop-up as tab [Free] 작동 중지한 후, 프로젝트를 실행해야 함
 - Transaction confirm 까지 시간이 다소 걸립니다.
 ```
+
+## Flow
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80610295/178131807-0b0d02ac-b2bd-400c-a680-4549060722a6.png" />
+  <p align="center">구조도</p>
+</p>
 
 ## Screen
 <p align="center">
