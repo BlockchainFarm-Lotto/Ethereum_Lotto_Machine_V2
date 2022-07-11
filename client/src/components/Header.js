@@ -26,12 +26,14 @@ function Header(props) {
             try{
                 await window.ethereum.request({ method: "eth_requestAccounts" });
             }catch (error){
-                console.log(`error ouccur ${error}`)
+                console.log(`error ouccur ${error}`);
+                alert('메타마스크를 설치해주세요!');
             }
         } else if(window.web3){
             var web3 = new Web3(Web3.curentProvider);
         } else{
-            console.log('메타마스크 연결이 필요합니다...')
+            console.log('메타마스크 연결이 필요합니다...');
+            alert('메타마스크 연결이 필요합니다!');
         }
 
         account = await web3.eth.getAccounts();
