@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import {Main, Header, Buy, Mypage} from "./components";
 import Web3 from 'web3';
+import LoadingOverlay from 'react-loading-overlay';
 
 function App() {
   let LottoCoinAddr = "0x661836D1264fF5FB1998f45299d0D769388202c1";
@@ -11,19 +12,25 @@ function App() {
   
   const [account, setAccount] = useState("");
   const [owner, setOwner] = useState("");
+  const [loading, setLoading] = useState(false);
 
   return (
     <BrowserRouter>
       <React.Fragment>
-        <Header Addr={LottoCoinAddr} ABI={LottoCoinABI} SetAccount={setAccount} SetOwner={setOwner} />
-          <Routes>
-            <Route path="/" element={<Main Addr={LottoCoinAddr} ABI={LottoCoinABI} account={account} owner={owner} />}/> 
-            <Route path="/Buy/:account/:owner" element={<Buy Addr={LottoCoinAddr} ABI={LottoCoinABI} />}/>
-            <Route path="/Mypage" element={<Mypage Addr={LottoCoinAddr} ABI={LottoCoinABI} account={account} owner={owner} />}/>
-          </Routes>
+        <LoadingOverlay active={loading} spinner={loading} text="Waiting for response...">
+          <div class="loading_wrap">
+            <Header Addr={LottoCoinAddr} ABI={LottoCoinABI} SetAccount={setAccount} SetOwner={setOwner} />
+              <Routes>
+                <Route path="/" element={<Main Addr={LottoCoinAddr} ABI={LottoCoinABI} account={account} owner={owner} setLoading={setLoading} />}/> 
+                <Route path="/Buy/:account/:owner" element={<Buy Addr={LottoCoinAddr} ABI={LottoCoinABI} setLoading={setLoading} />}/>
+                <Route path="/Mypage" element={<Mypage Addr={LottoCoinAddr} ABI={LottoCoinABI} account={account} owner={owner} />}/>
+              </Routes>
+          </div>
+        </LoadingOverlay>
       </React.Fragment>
     </BrowserRouter>
   );
 }
+// https://codesandbox.io/s/react-loading-overlay-3w274?from-embed=&file=/src/index.js
 
 export default App;

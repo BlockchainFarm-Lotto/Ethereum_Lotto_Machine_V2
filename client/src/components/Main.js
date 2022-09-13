@@ -4,29 +4,53 @@ import { Link } from "react-router-dom";
 import "./css/main.css";
 import Web3 from "web3";
 
+
 function Main(props) {
     let account =  props.account;
     let owner = props.owner;
     let result;
     let LottoCoinContract;
+    let balance;
+    let ownerBalance;
 
     const buyLotto = async () => {
-        
         if(window.ethereum){
             var web3 = new Web3(window.ethereum);
             console.log('메타마스크 연결!')
             LottoCoinContract = new web3.eth.Contract(props.ABI, props.Addr);
-            result = await LottoCoinContract.methods.BuyLotto().send({"from": account[0]});
-            window.location.href = `/Buy/${account[0]}/${owner}`;
+
+            balance = await LottoCoinContract.methods.balanceOf(account[0]).call();
+            ownerBalance = await LottoCoinContract.methods.balanceOf(account[0]).call();
+
+            if(balance < 1) {
+                alert("보유 코인이 부족합니다.\n코인 충전 후 다시 이용해주세요!");
+                return;
+            }
+
+            if(ownerBalance < 5) {
+                alert("상금으로 줄 코인이 부족합니다.\n관리자에게 문의하세요!");
+                return;
+            }
+
+            props.setLoading(true);
+            result = await LottoCoinContract.methods.BuyLotto().send({"from": account[0]}).then(function(result) {
+                console.log("수락 버튼 클릭");
+                window.location.href = `/Buy/${account[0]}/${owner}`;
+            }).catch(function(e) {
+                console.log("거부 버튼 클릭");
+            });
+            props.setLoading(false);
+            
             try{
                 await window.ethereum.request({ method: "eth_requestAccounts" });
             }catch (error){
-                console.log(`error ouccur ${error}`)
+                console.log(`error ouccur ${error}`);
             }
         } else if(window.web3){
             var web3 = new Web3(Web3.curentProvider);
         } else{
-            console.log('메타마스크 연결이 필요합니다...')
+            console.log('메타마스크 연결이 필요합니다...');
+            alert('메타마스크 연결이 필요합니다!');
         }
     }
 

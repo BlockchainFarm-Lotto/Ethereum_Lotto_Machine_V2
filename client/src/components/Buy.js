@@ -16,6 +16,7 @@ function Buy(props) {
     let submitNum = [];
     let LottoCoinContract;
     let result;
+    let balance;
 
     let matchIdx = [];
 
@@ -125,8 +126,17 @@ function Buy(props) {
             var web3 = new Web3(window.ethereum);
             console.log('메타마스크 연결!')
             LottoCoinContract = new web3.eth.Contract(props.ABI, props.Addr);
-            console.log(rank)
-            result = await LottoCoinContract.methods.Winning(rank, resArr, submitArr).send({"from": account});
+            console.log(rank);
+            props.setLoading(true);
+            result = await LottoCoinContract.methods.Winning(rank, resArr, submitArr).send({"from": account}).then(function(result) {
+                console.log("수락 버튼 클릭");
+                setResVisible(true); // 결과 화면 보이게
+            }).catch(function(e) {
+                console.log("거부 버튼 클릭");
+                alert("트랜잭션을 거절하셨습니다!");
+                window.location.href = `/`;
+            });
+            props.setLoading(false);
             try{
                 await window.ethereum.request({ method: "eth_requestAccounts" });
             }catch (error){
@@ -135,7 +145,7 @@ function Buy(props) {
         } else if(window.web3){
             var web3 = new Web3(Web3.curentProvider);
         } else{
-            console.log('메타마스크 연결이 필요합니다...')
+            console.log('메타마스크 연결이 필요합니다...');
         }
     }
 
@@ -144,7 +154,6 @@ function Buy(props) {
         await makeArr(); // 제출한 로또 번호 
         await matchLotto(); // 로또 번호 비교
         await WinningLotto();
-        setResVisible(true); // 결과 화면 보이게
     }
 
     return (

@@ -27,7 +27,6 @@ function Header(props) {
                 await window.ethereum.request({ method: "eth_requestAccounts" });
             }catch (error){
                 console.log(`error ouccur ${error}`);
-                alert('메타마스크를 설치해주세요!');
             }
         } else if(window.web3){
             var web3 = new Web3(Web3.curentProvider);
