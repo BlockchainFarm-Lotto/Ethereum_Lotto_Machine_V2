@@ -37,6 +37,7 @@ npm start
 - 구글 확장 프로그램인 Open link in same tab, pop-up as tab [Free] 과 MeatMask 충돌 현상 발생
 - Open link in same tab, pop-up as tab [Free] 작동 중지한 후, 프로젝트를 실행해야 함
 - Transaction confirm 까지 시간이 다소 걸립니다.
+- 각 페이지에서 새로고침(F5)을 했을 때, 메인페이지로 돌아와서 연결하기 버튼을 클릭하고 이용해주세요!
 ```
 
 ## Flow
