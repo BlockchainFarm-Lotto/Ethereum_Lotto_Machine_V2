@@ -53,8 +53,6 @@ function Buy(props) {
     }
 
     useEffect(() => {
-        // console.log("Addr ", props.Addr);
-        // console.log("ABI ", props.ABI);
         lottoNum();
     }, []);
 
@@ -75,8 +73,6 @@ function Buy(props) {
         for(let i=0;i<6;i++) {
             for(let j=0;j<6;j++) {
                 if(resArr[i] == submitNum[j]) {
-                    // console.log("resArr[i]"+resArr[i]);
-                    // console.log("submitNum[i]"+submitNum[i]);
                     matchIdx.push(j);
                     matchCnt++;
                 }
@@ -190,12 +186,6 @@ function Buy(props) {
                 <div className="answer-num">
                     <div>정답</div>
                     <ul>
-                        {/* <li><div>1</div></li>
-                        <li><div>9</div></li>
-                        <li><div>15</div></li>
-                        <li><div>27</div></li>
-                        <li><div>32</div></li>
-                        <li><div>41</div></li> */}
                         {resArr.map((value, idx) => {
                             return <li key={idx}><div>{value}</div></li>
                         })}
@@ -217,7 +207,7 @@ function Buy(props) {
                     <div className="res-text-coin">획득 코인 : {Coin} Coin</div>
                 </div>
             </div>
-            <Link to="/"><div class="re-start"><div>다시하기</div></div></Link>
+            <Link to="/"><div className="re-start"><div>다시하기</div></div></Link>
         </div>
         : null }
         </React.Fragment>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./css/header.css";
 import Web3 from "web3";
@@ -8,7 +8,6 @@ function Header(props) {
     console.log("pathname", pathname);
     let visible = true;
     if(pathname === "/Mypage" || pathname.includes("Buy")) visible = false;
-    // console.log(pathname.includes("Buy"));
 
     let owner;
     let account;
@@ -33,6 +32,7 @@ function Header(props) {
         } else{
             console.log('메타마스크 연결이 필요합니다...');
             alert('메타마스크 연결이 필요합니다!');
+            window.location.href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=ko";
         }
 
         account = await web3.eth.getAccounts();
@@ -54,13 +54,13 @@ function Header(props) {
 
     return (
         <React.Fragment>
-            <header id="fixed-bar" class="fixed-bar-box-shadow">
+            <header id="fixed-bar" className="fixed-bar-box-shadow">
                 <div id="fixed-bar-wrap">
                     <Link to="/">
                         <div id="fixed-bar-title">Ethereum Lotto</div>
                     </Link>
-                    {visible ? getVisible ? <div class="btn-wrap"><span class="addr">{getWeb3UserAddr}</span><Link to="/Mypage" account={getWeb3UserAddr} owner={getOwner}><div class="mypage-button"><div>Mypage</div></div></Link></div> : 
-                    <button class="link-button" onClick={initWeb3}><span class="button-text">연결하기</span></button>
+                    {visible ? getVisible ? <div className="btn-wrap"><span className="addr">{getWeb3UserAddr}</span><Link to="/Mypage" account={getWeb3UserAddr} owner={getOwner}><div className="mypage-button"><div>Mypage</div></div></Link></div> : 
+                    <button className="link-button" onClick={initWeb3}><span className="button-text">연결하기</span></button>
                     : null} 
                 </div>
             </header>

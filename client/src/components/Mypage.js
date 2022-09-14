@@ -15,6 +15,8 @@ function Mypage(props) {
     let sendcoin;
     let receivecoin;
 
+    let ownerBalance;
+
     const [balance, setBalance] = useState("0");
     const [gettingCoin, setGettingCoin] = useState("0");
     const [settingCoin, setSettingCoin] = useState("0");
@@ -77,9 +79,27 @@ function Mypage(props) {
     const receiveCoin = async () => {
         if(window.ethereum){
             var web3 = new Web3(window.ethereum);
-            console.log('sendCoin');
+            console.log('receiveCoin');
             LottoCoinContract = new web3.eth.Contract(props.ABI, props.Addr);
-            receivecoin = await LottoCoinContract.methods.ReceiveCoin().send({"from": account[0]});
+
+            ownerBalance = await LottoCoinContract.methods.balanceOf(account[0]).call();
+
+            if(ownerBalance < 10) {
+                alert("테스트로 지급할 코인이 부족합니다.\n관리자에게 문의하세요!");
+                return;
+            }
+
+            props.setLoading(true);
+            receivecoin = await LottoCoinContract.methods.ReceiveCoin().send({"from": account[0]}).then(function(result) {
+                console.log("수락 버튼 클릭");
+                console.log(result);
+                let newBalance = Number(balance) + 10;
+                setBalance(String(newBalance));
+            }).catch(function(e) {
+                console.log("거부 버튼 클릭");
+            });
+
+            props.setLoading(false);
         }
     }
 
@@ -123,7 +143,7 @@ function Mypage(props) {
                         </div>
                         <div className="details-box">
                             <button class="web3-button" onClick={receiveCoin}><div>코인 받기</div></button>
-                            <div class="getcoin-text"><span>테스트 코인을 받고 로또에 응모하세요!</span></div>
+                            <div className="getcoin-text"><span>테스트 코인을 받고 로또에 응모하세요!</span></div>
                         </div>
                         <div className="details-box">
                             <button class="unlink-button" onClick={disconnectMetamask}><div>Refresh</div></button>
@@ -153,15 +173,15 @@ function Mypage(props) {
                             </div>
                         </div>
                         <div className="details-box">
-                            <button class="web3-button" onClick={setCoin}><div>SetCoin</div></button>
+                            <button className="web3-button" onClick={setCoin}><div>SetCoin</div></button>
                             <input type="text" className="details-input getwidth" onChange={(e) => {setSettingCoin(e.target.value);}} />
                         </div>
                         <div className="details-box">
-                            <button class="web3-button" onClick={getCoin}><div>GetCoin</div></button>
-                            <div class="getcoin-text"><span>{gettingCoin + " Coin"}</span></div>
+                            <button className="web3-button" onClick={getCoin}><div>GetCoin</div></button>
+                            <div className="getcoin-text"><span>{gettingCoin + " Coin"}</span></div>
                         </div>
                         <div className="details-box">
-                            <button class="web3-button" onClick={sendCoin}><div>Send</div></button>
+                            <button className="web3-button" onClick={sendCoin}><div>Send</div></button>
                             <div className="send-form">
                                 <div className="send-form-cont">
                                     <div className="tit2">To</div>
@@ -174,11 +194,11 @@ function Mypage(props) {
                             </div>
                         </div>
                         <div className="details-box">
-                            <button class="unlink-button" onClick={disconnectMetamask}><div>Refresh</div></button>
+                            <button className="unlink-button" onClick={disconnectMetamask}><div>Refresh</div></button>
                         </div>
                     </div>
                 </div>
-                <Link to="/"><div class="re-start"><div>메인으로</div></div></Link>
+                <Link to="/"><div className="re-start"><div>메인으로</div></div></Link>
             </div>
             }
         </React.Fragment>

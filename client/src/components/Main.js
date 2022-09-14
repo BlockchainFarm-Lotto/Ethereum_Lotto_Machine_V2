@@ -1,6 +1,5 @@
 // eslint-disable-next-line
-import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./css/main.css";
 import Web3 from "web3";
 
@@ -28,7 +27,7 @@ function Main(props) {
             }
 
             if(ownerBalance < 5) {
-                alert("상금으로 줄 코인이 부족합니다.\n관리자에게 문의하세요!");
+                alert("상금으로 지급할 코인이 부족합니다.\n관리자에게 문의하세요!");
                 return;
             }
 
@@ -51,6 +50,7 @@ function Main(props) {
         } else{
             console.log('메타마스크 연결이 필요합니다...');
             alert('메타마스크 연결이 필요합니다!');
+            window.location.href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=ko";
         }
     }
 
@@ -94,7 +94,7 @@ function Main(props) {
                             <div className="rec2">1coin 소모</div>
                         </div>
                     </div> 
-                    <button class="buy-button" onClick={buyLotto}><div>구매하기</div></button>
+                    <button className="buy-button" onClick={buyLotto}><div>구매하기</div></button>
                 </div>
             </div>
         </React.Fragment>
