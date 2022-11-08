@@ -1,4 +1,4 @@
-# Ethereum_Lotto_Machine
+# Ethereum_Lotto_Machine_V2
 Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
 
 ## Description
