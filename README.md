@@ -1,6 +1,11 @@
 # Ethereum_Lotto_Machine_V2
 Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
 
+## Ethereum Lotto Machine V3 안내
+- Goerli Testnet과 연동한 DApp입니다.
+- [Ethereum Lotto Machine V3 github](https://github.com/BlockchainFarm-Lotto/Ethereum_Lotto_Machine_V3)
+- https://lottocoin.netlify.app/
+
 ## Description
 - Blockchain Farm 학회 Term Project - Ethereum Lotto Machine
 - 공통된 아이디어로 각자 개발 진행
