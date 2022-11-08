@@ -24,7 +24,7 @@ Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
 ## Sequence
 ```
 1. Ethereum Lotto Machine Application 실행
-2. 구글 브라우저 - localhost:3000 진입
+2. 크롬 브라우저 - localhost:3000 진입
 ```
 
 ## Command
@@ -38,7 +38,7 @@ npm start
 
 ## Caution
 ```
-- 구글 브라우저에서 실행할 것
+- 크롬 브라우저에서 실행할 것
 - 구글 확장 프로그램인 Open link in same tab, pop-up as tab [Free] 과 MeatMask 충돌 현상 발생
 - Open link in same tab, pop-up as tab [Free] 작동 중지한 후, 프로젝트를 실행해야 함
 - Transaction confirm 까지 시간이 다소 걸립니다.
