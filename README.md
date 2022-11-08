@@ -12,7 +12,7 @@ Blockchain Farm Term Project - Ethereum Lotto Machine Version 2
 - Ropsten Testnet is Deprecated
 
 ## Tools
-- Ropsten testnet
+- ~~Ropsten Testnet~~
 - React
 - Node.js
 
